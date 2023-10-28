@@ -13,11 +13,11 @@ const server = createServer(app);
 app.use(cors());
 export const io = new Server(server, {
     cors: {
-        origin: process.env.FRONT_PORT,
+        origin: "*",
     },
 });
 
-io.origins('*:*') 
+// io.origins('*:*') 
 
 app.use(express.json());
 
