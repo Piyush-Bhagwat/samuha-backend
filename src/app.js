@@ -17,6 +17,8 @@ export const io = new Server(server, {
     },
 });
 
+io.origins('*:*') 
+
 app.use(express.json());
 
 app.use("/api/room", roomRoute);
