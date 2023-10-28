@@ -22,6 +22,10 @@ app.use(express.json());
 app.use("/api/room", roomRoute);
 app.use("/api/user", userRoute);
 app.use("/api/msg", messageRouter);
+
+app.get("/", (req, res)=>{
+    res.send("Welcome to Backend") 
+})
 config();
 
 export default server;
