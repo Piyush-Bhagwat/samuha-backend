@@ -24,6 +24,7 @@ app.use("/api/user", userRoute);
 app.use("/api/msg", messageRouter);
 
 app.get("/", (req, res)=>{
+    console.log("Welcome to World");
     res.send("Welcome to Backend") 
 })
 config();
