@@ -6,6 +6,7 @@ import {
     getUser,
     getUserByEmail,
     joinRoom,
+    leaveRoom,
     updateSocket,
 } from "../controllers/userController.js";
 
@@ -93,8 +94,17 @@ router.put("/joinRoom", async (req, res) => {
     if (joint) {
         res.send("joined");
     } else {
-        res.send("no-room");    
+        res.send("no-room");
     }
+});
+
+router.delete("/leaveRoom", async (req, res) => {
+    const userID = req.query.userID;
+    const roomID = req.query.roomID;
+
+    await leaveRoom(userID, roomID);
+
+    res.send("left");
 });
 
 export { router };

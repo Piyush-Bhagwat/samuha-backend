@@ -50,19 +50,11 @@ const deleteMember = async (code, id) => {
     try {
         chatRoomModel.updateOne(
             { _id: code }, // Replace with the chat room's actual ID
-            { $pull: { members: id } },
-            (err, result) => {
-                if (err) {
-                    console.error("Error removing user from chat room:", err);
-                } else {
-                    console.log("User removed from chat room:", result);
-                }
-            }
+            { $pull: { members: id } }
         );
     } catch (error) {
         console.log(error);
     }
-   
 };
 
 export { createRoom, addMember, doesRoomExist, deleteMember };

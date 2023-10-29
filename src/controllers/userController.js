@@ -93,12 +93,31 @@ const joinRoom = async (userID, roomID) => {
         return false;
     }
 };
+const leaveRoom = async (userID, roomID) => {
+    const exist = await doesRoomExist(roomID);
+    console.log("left", userID, roomID);
+
+    if (exist) {
+        await deleteMember(roomID, userID);
+
+        await userModel.updateOne(
+            { _id: userID },
+            {
+                $pull: { rooms: roomID },
+            }
+        );
+        return true;
+    } else {
+        return false;
+    }
+};
 
 export {
     addUser,
     getUser,
     updateSocket,
     deleteUser,
+    leaveRoom,
     getUserByEmail,
     getAllRooms,
     joinRoom,
