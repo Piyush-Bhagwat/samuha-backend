@@ -19,7 +19,13 @@ const getMessages = async (roomID = "123abc") => {
     try {
         const room = await chatRoomModel
             .findOne({ code: roomID })
-            .populate("messages");
+            .populate({
+                path: "messages",
+                options: {
+                  sort: { time: -1 }, // Sort by time in descending order to get the latest messages first
+                  limit: 100, // Limit the number of messages to 100
+                },
+              });
 
         const messages = room.messages;
 
