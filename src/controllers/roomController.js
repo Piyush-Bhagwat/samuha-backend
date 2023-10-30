@@ -57,4 +57,18 @@ const deleteMember = async (code, id) => {
     }
 };
 
-export { createRoom, addMember, doesRoomExist, deleteMember };
+const isUserMember = async (roomID, userID) => {
+    const room = await chatRoomModel.findOne({ code: roomID });
+
+    if (room) {
+        if (room.members.includes(userID)) {
+            return true;
+        } else {
+            return false;
+        }
+    } else {
+        return false;
+    }
+};
+
+export { createRoom, addMember, doesRoomExist, deleteMember, isUserMember };

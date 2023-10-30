@@ -12,7 +12,7 @@ import {
 
 const router = Router();
 
-router.post("/addUser", async (req, res) => {
+router.post("/signUp", async (req, res) => {
     try {
         const data = req.body;
 
@@ -28,7 +28,7 @@ router.post("/addUser", async (req, res) => {
         });
     } catch (er) {
         console.log(er);
-        res.send(404);
+        res.status(404);
     }
 });
 

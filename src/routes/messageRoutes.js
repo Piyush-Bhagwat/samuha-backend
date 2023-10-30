@@ -1,11 +1,18 @@
 import { Router } from "express";
 import { addMessage, getMessages } from "../controllers/messageController.js";
+import { isUserMember } from "../controllers/roomController.js";
 
 const messageRouter = Router();
 
 messageRouter.post("/add", async (req, res) => {
     try {
         const data = req.body;
+        const { roomID, userID } = data;
+        const isMember = await isUserMember(roomID, userID);
+        if (!isMember) {
+            res.send("no-permission");
+            return;
+        }
 
         if (data) {
             addMessage(data);
